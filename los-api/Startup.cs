@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using los_api.Models;
 
 namespace los_api
 {
@@ -26,6 +28,10 @@ namespace los_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<ProductContext>(opt =>
+                                               opt.UseInMemoryDatabase("ProductContext"));
+            services.AddDbContext<StockContext>(opt =>
+                                               opt.UseInMemoryDatabase("StockContext"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
